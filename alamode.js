@@ -1029,8 +1029,8 @@ var alamode = {
 
     var options = {
       label: { format: '{l}: {f}', },
-      block: { dynamicHeight: true },
-      chart: { bottomPinch: 1 },
+      block: { dynamicHeight: false, dynamicSlope: true },
+      chart: { bottomPinch: 1, curve: { enabled: true } },
       animation: 100
     };
 

@@ -1041,6 +1041,48 @@ var alamode = {
     d3.select("#" + id).style("height",height + "px");
   },
 
+  // Built with Greg Hovanesyan's FunnelGraph.js
+  // https://github.com/greghub/funnel-graph-js
+  horizontalFunnel: function(o) {
+    var id = alamode.makeId(10)
+
+    var queryName = o["query_name"],
+        stageColumn = o["stage_column"],
+        valueColumn = o["value_column"],
+        // Optional
+        htmlElement = o["html_element"] || "body",
+        height = o["height"] || "300",
+        width = o["width"] || "500";
+
+    var data = alamode.getDataFromQuery(queryName);
+
+    var uniqContainerClass = alamode.addContainerElement(htmlElement);
+
+    var funnelLabels = [];
+    var funnelValues = [];
+
+    data.forEach(function(d) {
+      funnelLabels.push(d[stageColumn]);
+      funnelValues.push(d[valueColumn]);
+    })
+
+    var graph = new FunnelGraph({
+      container: uniqContainerClass,
+      gradientDirection: 'horizontal',
+      data: {
+        labels: funnelLabels,
+        values: funnelValues
+      },
+      displayPercent: true,
+      direction: 'horizontal',
+      width: width,
+      height: height,
+      subLabelValue: 'real'
+    });
+
+    graph.draw();
+  },
+
   // Buitl with NVD3 multibar horizontal bar chart
   // http://nvd3-community.github.io/nvd3/
   horizontalBarChart: function(o) {

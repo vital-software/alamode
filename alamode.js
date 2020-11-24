@@ -1051,6 +1051,8 @@ var alamode = {
         valueColumn = o["value_column"],
         // Optional
         htmlElement = o["html_element"] || "body",
+        height = o["height"] || "500",
+        width = o["width"] || "900",
         gradientStart = o["gradient_start"] || "orange",
         gradientEnd = o["gradient_end"] || "red";
 
@@ -1076,6 +1078,8 @@ var alamode = {
       },
       displayPercent: true,
       direction: 'horizontal',
+      width: width,
+      height: height,
       subLabelValue: 'real'
     });
 
